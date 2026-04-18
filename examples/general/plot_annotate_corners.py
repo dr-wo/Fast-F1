@@ -14,8 +14,20 @@ import numpy as np
 import fastf1
 
 
-session = fastf1.get_session(2023, 'Silverstone', 'Q')
-session.load()
+session = fastf1.get_session(2022, 22, 'FP1')
+test_event = fastf1.get_testing_event(2026, 1)
+print('test event:', test_event)
+test_session = test_event.get_session(3)
+print('test session laps:', session.name)
+# test_session.load(laps=True)
+# session.load()  # Make sure telemetry is loaded
+# circuit_key = session.session_info['Meeting']['Circuit']
+# circuit_info = session.get_circuit_info()
+# print(type(circuit_info))
+# print('circuit info:', circuit_info.marshal_sectors['Distance'].max())
+raise
+laps = session.laps.pick_driver('HAM')
+laps.to_csv('/Users/zhxutong/dr-wo/temp/laps.csv')  # For debugging purpose
 
 lap = session.laps.pick_fastest()
 pos = lap.get_pos_data()

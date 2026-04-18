@@ -18,7 +18,7 @@ fastf1.plotting.setup_mpl(mpl_timedelta_support=True, color_scheme='fastf1')
 ###############################################################################
 # Load the race session.
 
-race = fastf1.get_session(2023, "Azerbaijan", 'R')
+race = fastf1.get_session(2023, "Azerbaijan", 'FP1')
 race.load()
 
 ###############################################################################
@@ -30,6 +30,8 @@ race.load()
 # is required.
 
 fig, ax = plt.subplots(figsize=(8, 5))
+
+print('FP1 HAM: ', race.laps.pick_drivers('HAM')['Stint'])
 
 for driver in ('HAM', 'PER', 'VER', 'RUS'):
     laps = race.laps.pick_drivers(driver).pick_quicklaps().reset_index()
